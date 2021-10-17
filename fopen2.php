@@ -7,6 +7,7 @@
     }
     // 1行ずつ出力する。
     while($row = fgetcsv($fp)) {
-        var_dump($row);
+        echo "書籍名：" . $row[0] . "<br>";
+        echo "著者名：" . $row[4] . "<br>";
     }
 ?>
