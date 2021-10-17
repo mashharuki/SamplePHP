@@ -5,7 +5,8 @@
         </h1>
         <b>
             <?php
-                echo "こんにちは";
+                $greeting = "こんにちは";
+                echo $greeting;
             ?>
         </b>
     </body>
