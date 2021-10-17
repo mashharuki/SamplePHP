@@ -5,5 +5,8 @@
         echo "ファイルのオープンに失敗しました。";
         exit;
     }
-    var_dump($fp);
+    // 1行ずつ出力する。
+    while($row = fgetcsv($fp)) {
+        var_dump($row);
+    }
 ?>
