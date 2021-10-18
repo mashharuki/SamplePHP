@@ -2,6 +2,7 @@
     // 他のファイルを読み込む
     require_once __DIR__ . '/inc/function.php';
     require_once __DIR__ . '/inc/error_check.php';
+    include __DIR__ . '/inc/header.php';
 
     // IDについてのバリデーション
     if (empty($_POST['id'])) {
@@ -37,7 +38,7 @@
         // SQL実行
         $statement->execute();
         echo "データが更新されました。";
-        echo "<a href='list.php'>リストへ戻る</a>";
+        echo "<a href='index.php'>リストへ戻る</a>";
         // インスタンス生成
         $dbh = db_open();
         // SQL
@@ -46,3 +47,4 @@
         exit;
     }
 ?>
+<?php include __DIR__ .'/inc/footer.php'; ?>

@@ -2,6 +2,7 @@
     // 他のファイルを読み込む
     require_once __DIR__ . '/inc/function.php';
     require_once __DIR__ . '/inc/error_check.php';
+    include __DIR__ . '/inc/header.php';
 
     try {
         // インスタンス生成
@@ -23,9 +24,10 @@
         // SQL実行
         $statement->execute();
         echo "データが追加されました。";
-        echo "<a href='list.php'>リストへ戻る</a>";
+        echo "<a href='index.php'>リストへ戻る</a>";
     } catch (PDOException $e) {
         echo "エラー!：" . str2html($e->getMessage()) . "<br>";
         exit;
     }
 ?>
+<?php include __DIR__ .'/inc/footer.php'; ?>

@@ -1,6 +1,7 @@
 <?php
     // 他のファイルを読み込む
-    require_once 'function.php';
+    require_once __DIR__ . '/inc/function.php';
+    include __DIR__ . '/inc/header.php';
     // IDについてのバリデーション
     if (empty($_GET['id'])) {
         echo "idを指定してください。";
@@ -61,5 +62,7 @@
         </p>
     </from>
     EOD;
+    include __DIR__ . '/inc/header.php';
     echo $html_form;
+    include __DIR__ .'/inc/footer.php';
 ?>
