@@ -1,48 +1,17 @@
 <?php
     // 他のファイルを読み込む
-    require_once 'function.php';
-    // 各入力項目用のバリデーション
-    if (empty($_POST['title'])) {
-        echo "タイトルは必須です。";
-        exit;
-    }
-    if (!preg_match('/¥A[[:^cntrl:]]{1, 200}¥z/u', $_POST['title'])) {
-        echo "タイトルは200文字以内です。";
-        exit;
-    }
-    if (!preg_match('/¥A¥d{0, 13}¥z/', $_POST['isbn'])) {
-        echo "ISBNは数字13桁までです。";
-        exit;
-    }
-    if (!preg_match('/¥A¥d{0, 6}¥z/u', $_POST['price'])) {
-        echo "価格は数字6桁までです。";
-        exit;
-    }
-    if (empty($_POST['publish'])) {
-        echo "日付は必須です。";
-        exit;
-    }
-    if (!preg_match('/¥A¥d{4}-¥d{1,2}-¥d{1,2}¥z/u', $_POST['publish'])) {
-        echo "日付のフォーマットが違います。";
-        exit;
-    }
-    $date = explode('-', $_POST['publish']);
-    if (!checkdate($date[1], $date[2], $date[0])) {
-        echo "正しい日付を入力してください。";
-        exit;
-    }
-    if (!preg_match('/¥A[[:^cntrl:]]{0, 80}¥z/u', $_POST['author'])) {
-        echo "著者名は80文字以内で入力してください。";
-        exit;
-    }
+    require_once __DIR__ . '/inc/function.php';
+    require_once __DIR__ . '/inc/error_check.php';
 
     try {
-        
         // インスタンス生成
         $dbh = db_open();
         // SQL
-        $sql = "INSERT INTO books (id, title, isbn, price, publish, author) 
-                    VALUES (NULL, :title, :isbn, :price, :publish, :author)";
+        $sql = "INSERT INTO 
+                    books (id, title, isbn, price, publish, author) 
+                VALUES 
+                    (NULL, :title, :isbn, :price, :publish, :author)";
+
         $statement = $dbh->prepare($sql);
         $price = (int) $_POST['price'];
         // 値を当てはめていく。
