@@ -1,3 +1,10 @@
+<?php require_once __DIR__ . '/login_check.php'; ?>
+<?php
+    // トークンを生成してセッションの中に詰める。
+    session_start();
+    $token = bin2hex((random_bytes(20)));
+    $_SESSION['token'] = $token;
+?>
 <?php
     // 他のファイルを読み込む
     require_once __DIR__ . '/inc/function.php';
@@ -58,6 +65,7 @@
         </p>
         <p class="button">
             <input type="hidden" name="id" value='$id'>
+            <input type="hidden" name='token' value='$token'>
             <input type="submit" value="送信する" >
         </p>
     </from>
